@@ -23,56 +23,56 @@
         android:id="@+id/dateRange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
     <TextView
         android:id="@+id/todayDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
     <TextView
         android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
     <TextView
         android:id="@+id/compability"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
     <TextView
         android:id="@+id/mood"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
     <TextView
         android:id="@+id/color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
     <TextView
         android:id="@+id/lucky_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
     <TextView
         android:id="@+id/lucky_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="hei"
         />
 
 

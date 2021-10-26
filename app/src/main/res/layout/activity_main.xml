@@ -34,7 +34,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hent ditt horeskop"
+        android:text="Hent ditt horoskop"
         android:id="@+id/startactivity"/>
 
 
