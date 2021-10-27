@@ -1,8 +1,10 @@
 package com.example.api
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -26,7 +28,7 @@ class signActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign)
         val textView = findViewById<TextView>(R.id.main)
-        APIkall(textView)
+
         dateRange = findViewById(R.id.dateRange)
         todayDate = findViewById(R.id.todayDate)
         desc = findViewById(R.id.desc)
@@ -36,15 +38,27 @@ class signActivity : AppCompatActivity() {
         lucky_number = findViewById(R.id.lucky_number)
         lucky_time = findViewById(R.id.lucky_time)
 
+        val getURL : String? = intent.getStringExtra("url")
+        val url : String = getURL.toString()
 
+
+        APIkall(textView, url)
+
+// Komme tilbake til første activity så man kan velge et annet sign eller dag
+        val start : Button = findViewById(R.id.goback)
+
+
+        start.setOnClickListener {
+            val intent = Intent(this@signActivity,MainActivity::class.java)
+
+            startActivity(intent)
+        }
 
     }
 
-
-
-    private fun APIkall(view: TextView) {
+    private fun APIkall(view: TextView, url: String) {
         requestQueue = Volley.newRequestQueue(this)
-        val url = "https://aztro.sameerkumar.website/?sign=aries&day=today"
+
 
         //Lager en request
         val request = StringRequest(

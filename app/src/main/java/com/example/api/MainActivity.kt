@@ -10,24 +10,26 @@ import android.widget.Spinner
 
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val spinner: Spinner = findViewById(R.id.spinner)
-        val signs = resources.getStringArray(R.array.sign)
-
-        val adapter = ArrayAdapter(
+        //Spinner for signs
+        val signSpinner: Spinner = findViewById(R.id.signspinner)
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
             this,
-            android.R.layout.simple_spinner_item,
-            signs
-        )
-        spinner.adapter = adapter
+            R.array.sign,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            signSpinner.adapter = adapter
+        }
 
-
-        val date: Spinner = findViewById(R.id.date)
+        //Spinner for dates
+        val daySpinner: Spinner = findViewById(R.id.date)
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
@@ -37,35 +39,29 @@ class MainActivity : AppCompatActivity() {
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
-            date.adapter = adapter
+            daySpinner.adapter = adapter
         }
 
+        //Knapp for å starte neste activity
+        val start : Button = findViewById(R.id.startactivity)
 
-
-        val start: Button = findViewById(R.id.startactivity)
-
+        //onClick event for å få de vaglte tingene fra spinnerne og start ny activity
         start.setOnClickListener {
-            val sign: String = spinner.getSelectedItem().toString()
-            val date: String = date.getSelectedItem().toString()
+            val selectedSign : String = signSpinner.selectedItem.toString()
+            val selectedDay : String = daySpinner.selectedItem.toString()
+            val url : String = createURL(selectedSign, selectedDay)
 
-            val intent = Intent(this, signActivity::class.java)
-            intent.putExtra("url", createURL(sign, date))
+            val intent = Intent(this@MainActivity,signActivity::class.java)
+            intent.putExtra("url", url)
             startActivity(intent)
-
-
         }
-
-
-
-        }
-
 
     }
 
-    private fun createURL(sign: String, date: String): String {
-        val url = "https://aztro.sameerkumar.website/?sign=$sign&day=$date"
-
-        return url
+    //Lage URL
+    private fun createURL(sign : String, date : String) : String {
+        return "https://aztro.sameerkumar.website/?sign=$sign&day=$date"
+    }
 }
 
 
